@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+ <meta charset="UTF-8">
+    <title>Text Shadow Generator by Blog Mas Tamvan</title>
+</head>
+<link rel="stylesheet" type="text/css" href="stylesheets/shadow.css">
+<script src="stylesheets/jquery.min.js"></script>
+<script src="stylesheets/dat.gui.min.js"></script>
+<script src="stylesheets/jquery.xcolor.min.js"></script>
+<script src="stylesheets/jquery.iluminate.js"></script>
+<body>
+<h1 id='blog mas tamvan' >Shadow Generator</h1>
+<textarea class='mas tamvan'></textarea>
+<script type="text/javascript">
+var options={uppercase:!0,preset:"Default",presets:{Default:{iluminate:{direction:"bottomRight",textSize:60,textAlpha:.2,fadeText:.5},colors:{"background-color":"#E74C3C",color:"#FFFFFF"}},Extrude:{iluminate:{direction:"bottomLeft",textSize:11,textAlpha:.88,fadeText:.74},colors:{"background-color":"#d9d9d9",color:"#2d2d2d"}},BlueSky:{iluminate:{direction:"bottomRight",textSize:111,textAlpha:.08,fadeText:1},colors:{"background-color":"#00c2ff",color:"#005d84"}},Green:{iluminate:{direction:"topLeft",textSize:26,textAlpha:.21,fadeText:.87},colors:{"background-color":"#aacf90",color:"#deffa2"}},Dark:{iluminate:{direction:"bottomLeft",textSize:50,textAlpha:.21,fadeText:.87},colors:{"background-color":"#191f25",color:"#252d37"}}},iluminate:{direction:"bottomLeft",textSize:60,textAlpha:.2,fadeText:.5,includeText:!0,textOnly:!0},colors:{"background-color":"#FFFFFF",color:"#000000"}},applyPreset=function(){var o=function(t,e){for(var i in e)"object"==typeof e[i]?t[i]=o(t[i],e[i]):t[i]=e[i]};o(options.iluminate,options.presets[options.preset].iluminate),o(options.colors,options.presets[options.preset].colors);for(var t in gui.__controllers)gui.__controllers[t].updateDisplay();apply()},apply=function(){$("h1").css(options.colors).css("text-transform",options.uppercase?"uppercase":"").iluminate(options.iluminate),$("textarea").text("text-shadow: "+$("h1").css("text-shadow")+";")},gui=new dat.GUI;gui.add(options,"preset",Object.keys(options.presets)).onChange(applyPreset),gui.add(options.iluminate,"direction",["top","topLeft","topRight","left","right","bottom","bottomLeft","bottomRight"]).onChange(apply),gui.add(options.iluminate,"textSize",0,200).onChange(apply),gui.add(options.iluminate,"textAlpha",0,1).onChange(apply),gui.add(options.iluminate,"fadeText",0,1).onChange(apply),gui.addColor(options.colors,"background-color").onChange(apply),gui.addColor(options.colors,"color").onChange(apply),gui.add(options,"uppercase").onChange(apply),applyPreset(),setTimeout(function(){$("textarea").slideDown()},2500);
+</script>
+</body>
+</html>
